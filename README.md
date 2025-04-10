@@ -72,3 +72,20 @@ Now, open your browser and go to `http://127.0.0.1:8000/` to view the applicatio
 
 
 
+## 🖼️ Screenshots
+
+You can include screenshots here to help users understand the interface:
+
+```md
+!(screenshots/home.png)
+!(screenshots/question_detail.png)
+```
+
+Place your image files in a `screenshots/` folder in the root directory.
+
+---
+
+Happy coding! ✨
+
+
+
