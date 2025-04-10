@@ -1,0 +1,108 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load tags %}
+{% block content %}
+
+<div>
+	<h2 class="display-6">Question Details</h2>
+	<hr class="my-4">
+	<div>
+		<p><strong>Author: </strong><a href="{% url 'askme:profilepage' q.author %}">{{q.author}}</a>
+		<span class="float-right">
+			<span class="badge badge-secondary">Created: {{q.created}}</span>
+			<span class="badge badge-secondary">Updated: {{q.updated}}</span>
+		</span></p>
+		<h4>Question:</h4><h3>{{q.body}}</h3>
+	</div>
+	<hr class="my-4">
+	
+
+</div>
+<hr class="my-4">
+		<h4>{{ comments.count}} Answers </h4>
+		<hr class="my-4">
+			{% for comment in comments %}
+			<!-- ques_detail.html -->
+
+			<p>{{ comment.content }} ({{ comment.likes.count }} likes)</p>
+			{% if request.user in comment.likes.all %}
+				<button class="btn btn-outline-danger btn-sm">
+					<i class="fas fa-thumbs-down">
+						<a href="{% url 'askme:like_comment' q.id comment.id %}">Unlike</a>
+					</i> 
+				</button>
+				
+			{% else %}
+				<button class="btn btn-outline-danger btn-sm">
+					<i class="fas fa-thumbs-up">
+						<a href="{% url 'askme:like_comment' q.id comment.id %}">Like</a>
+					</i> 
+				</button>
+				
+			{% endif %}
+			<div class="media">
+				<img style="background-color: inherit;" class="mr-3" height="30" width="30" src="{% static 'image.png' %}" alt="Generic placeholder image">
+				<div class="media-body">
+					<h5 class="mt-0">
+						<p><strong>@</strong><a href="{% url 'askme:profilepage' comment.user %}">{{comment.user}}</a>
+							<span class="float-right">{{comment.timestamp}}</span>
+						</p>
+					</h5>
+					<p>
+						{{ comment.content }}
+						{% if request.user == comment.user %}
+							<form action="{% url 'askme:delete_comment' q.id %}" method="POST">
+								{% csrf_token %}
+								<button class="btn btn-outline-danger btn-sm" type="submit" name="comment_id" value="{{comment.id}}"><i class="fas fa-trash"></i> Delete</button>
+							</form>
+						{% endif %}
+					</p>
+					<br>
+					<h4>{{ replies|count_reply:comment}} Replies</h4>
+					{% for reply in replies|in_category:comment %}
+						<div class="media mt-3">
+							<p class="pr-3" href="#">
+								<img style="background-color: inherit;" src="{% static 'image.png' %}" height="30" width="30" alt="Generic placeholder image">
+							</p>
+							
+							<div class="media-body">
+								<h5 class="mt-0">
+									<p><strong>@</strong><a href="{% url 'askme:profilepage' reply.user %}">{{reply.user}}</a>
+										<span class="float-right">{{comment.timestamp}}</span>
+									</p>
+								</h5>
+								<p>{{ reply.content }}</p>
+								<br>
+								{% if request.user == reply.user %}
+									<form action="{% url 'askme:delete_reply' q.id %}" method="POST">
+									{% csrf_token %}
+										<button class="btn btn-outline-danger btn-sm" type="submit" name="reply_id" value="{{reply.id}}"><i class="fas fa-trash"></i> Delete</button>
+									</form>
+								{% endif %}
+							</div>
+						</div>
+					{% endfor %}
+					<br>
+					<form class="form-inline" method="POST" action="{% url 'askme:comment_reply' q.id %}">
+						{% csrf_token %}
+						<div class="form-group mx-sm-3 mb-2">
+							<input class="form-control" type="text" placeholder="Reply!" name="text" value="">
+						</div>
+						<button class="btn btn-outline-primary mb-2" type="submit" name="comment_id" value="{{comment.id}}"><i class="fas fa-comment"></i> Reply</button>
+					</form>
+					<br>
+				</div>
+			</div>
+			{% endfor %} 
+
+		<h4>Add your answer below:</h4>
+		<form method="POST">
+    		{% csrf_token %}
+    		<div class="form-group">
+        {{ comment_form.content }}
+    </div>
+    <button class="btn btn-outline-primary" type="submit"><i class="fas fa-comment"></i> Post answer</button>
+</form>
+<br><br>
+		<br><br>
+{% endblock %}

@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div class="container">
+        <h1 class="display-5">Ask a Question!</h1>
+        <hr class="my-4">
+            <form method="POST">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="question">Type Here:</label>
+                    {{ form.body }}
+            </div>
+            <input type="submit" name="submit" class="btn btn-success mb-2" value="Ask">
+            <input type="reset" name="reset" class="btn btn-secondary mb-2" value="Reset">
+            </form>
+    </div>
+{% endblock %}

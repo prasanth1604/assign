@@ -1,0 +1,126 @@
+/* Global Styles */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: Arial, sans-serif;
+  }
+  
+  /* Navbar Styles */
+  
+  .navbar {
+    background-color: #2b0000;
+  }
+  
+  /* Container Styles */
+  
+  .container {
+    padding-top: 77px;
+  }
+  
+  /* Footer Styles */
+  
+  .footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: #2b0000;
+    color: white;
+    text-align: center;
+    text-transform: uppercase;
+  }
+  
+  .footer p {
+    padding-top: 10px;
+  }
+  
+  /* Reaction Styles */
+  
+  .reaction {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+  
+  .reaction form {
+    padding-right: 5px;
+    padding-bottom: 15px;
+  }
+  
+  /* Button Styles */
+  
+  .btn-outline-warning {
+    color: orange;
+  }
+  
+  .btn-primary {
+    background-color: #2b0000;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 18px;
+    cursor: pointer;
+  }
+  
+  .btn-primary:hover {
+    background-color: #333;
+  }
+  
+  /* Card Styles */
+  
+  .card {
+    margin-bottom: 20px;
+  }
+  
+  .card-body {
+    padding: 20px;
+  }
+  
+  .card-title {
+    font-size: 24px;
+    font-weight: bold;
+    color: #2b0000;
+  }
+  
+  .card-text {
+    font-size: 18px;
+    color: #666;
+  }
+  
+  /* Jumbotron Styles */
+  
+  .jumbotron {
+    background-color: #f7f7f7;
+    padding: 20px;
+    margin-bottom: 20px;
+  }
+  
+  .jumbotron h1 {
+    font-size: 36px;
+    font-weight: bold;
+    color: #2b0000;
+  }
+  
+  .jumbotron p {
+    font-size: 18px;
+    color: #666;
+  }
+  
+  /* Header Styles */
+  
+  h1, h2, h3, h4, h5, h6 {
+    font-weight: bold;
+    color: #2b0000;
+  }
+  
+  /* ID Styles */
+  
+  #id {
+    display: inline-flex;
+    vertical-align: middle;
+  }

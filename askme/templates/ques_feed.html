@@ -1,0 +1,22 @@
+<!-- ques_feed.html -->
+
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="container">
+        <h1 class="display-5">Questions Feed</h1>
+        <hr class="my-4">
+            {% for q in ques %}
+                <div class="card">
+                    <div class="card-body">
+                        <h1 class="card-title" ><strong>{{ q.body }}</strong></h1>
+                        <p class="card-text">Author: {{ q.author }}</p>
+                        <p class="card-text">Created: {{ q.created }}</p>
+                        <p class="card-text">Updated: {{ q.updated }}</p>
+                        <a href="{% url 'askme:ques_detail' q.id %}" class="btn btn-primary">View Details</a>
+                    </div>
+                </div>
+                  <br>
+            {% endfor %}
+    </div>
+{% endblock %}

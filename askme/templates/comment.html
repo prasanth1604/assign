@@ -1,0 +1,20 @@
+{% extends 'ques_detail.html' %}
+{% load tags %}
+{% block commentreply %}
+	<h4>Reply below:</h4>
+	<form method="POST" action="{% url 'askme:comment_reply' comment.id %}">
+		{% csrf_token %}
+		{{ reply_form|crispy }}
+		<button type="submit" name="comment_id" value="{{comment.id}}"></button>
+	</form>
+
+	<br><br>
+	<h4>{{ replies.count}} Replies</h4>
+	<div>
+		{% for reply in replies %}
+			<p>{{ reply.content }}</p>
+			<pre>by-{{reply.user}} -- {{reply.timestamp}}</pre>
+		{% endfor %}
+	</div>
+
+{% endblock %}

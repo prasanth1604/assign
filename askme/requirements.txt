@@ -1,0 +1,8 @@
+Django
+bcrypt
+cryptography
+django-crispy-forms
+PyJWT
+requests
+Pillow
+social-auth-app-django
